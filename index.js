@@ -3,6 +3,7 @@ const root = document.querySelector(":root")
 const input = document.getElementById("input")
 const resultInput = document.getElementById("result")
 const allowedKeys = ["(", ")", "/", "*", "-", "+", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0", ".", "%", " "]
+const copyToClipboardBtn =  document.getElementById("copyToClipboard")
 
 document.querySelectorAll(".charKey").forEach(function (charKeyBtn) {
   charKeyBtn.addEventListener("click", function () {
@@ -42,18 +43,21 @@ function calculate() {
 
 document.getElementById("copyToClipboard").addEventListener("click", function (ev) {
   const button = ev.currentTarget
-  if (button.innerText === "Copy") {
-    button.innerText = "Copied!"
-    button.classList.add("success")
-    navigator.clipboard.writeText(resultInput.value)
-    setTimeout(() => {
+  if(resultInput.value != ""){
+    if (button.innerText === "Copy") {
+      button.innerText = "Copied!"
+      button.classList.add("success")
+      navigator.clipboard.writeText(resultInput.value)
+      setTimeout(() => {
+        button.innerText = "Copy"
+        button.classList.remove("success")
+      }, 5000);
+    } else {
       button.innerText = "Copy"
       button.classList.remove("success")
-    }, 5000);
-  } else {
-    button.innerText = "Copy"
-    button.classList.remove("success")
+    }
   }
+
 })
 
 document.getElementById("themeSwitcher").addEventListener("click", function () {
