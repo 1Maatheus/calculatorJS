@@ -46,6 +46,10 @@ document.getElementById("copyToClipboard").addEventListener("click", function (e
     button.innerText = "Copied!"
     button.classList.add("success")
     navigator.clipboard.writeText(resultInput.value)
+    setTimeout(() => {
+      button.innerText = "Copy"
+      button.classList.remove("success")
+    }, 5000);
   } else {
     button.innerText = "Copy"
     button.classList.remove("success")
